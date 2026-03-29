@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4B0082">
+    <meta name="description" content="Deepfake Detector - Scan audio, video, and image files for deepfakes">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%234B0082' width='192' height='192'/><text x='50%' y='50%' font-size='120' fill='white' text-anchor='middle' dominant-baseline='central' font-weight='bold'>KTB</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%234B0082' width='192' height='192' rx='45'/><text x='50%' y='50%' font-size='120' fill='white' text-anchor='middle' dominant-baseline='central' font-weight='bold'>KTB</text></svg>">
+    <title>Deepfake Detector</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="logo">KTB</div>
+                <div>
+                    <h1>Deepfake Detector</h1>
+                    <p>Scan audio, video, and image files for deepfakes</p>
+                </div>
+            </div>
+            <a href="#" class="download-btn" onclick="downloadApp(event)">Download App</a>
+        </div>
+    </header>
+    <main>
+        <section class="section">
+            <h2>Choose Detection Type</h2>
+            <p>Select the type of file you want to analyze for deepfake detection.</p>
+
+            <div class="detection-section">
+                <div class="detect-card" onclick="selectDetection('audio')">
+                    <i class="fas fa-microphone"></i>
+                    <h3>Audio Detection</h3>
+                    <p>Analyze audio files for synthetic voice patterns and manipulations</p>
+                </div>
+
+                <div class="detect-card" onclick="selectDetection('video')">
+                    <i class="fas fa-video"></i>
+                    <h3>Video Detection</h3>
+                    <p>Examine video content for facial manipulations and inconsistencies</p>
+                </div>
+
+                <div class="detect-card" onclick="selectDetection('image')">
+                    <i class="fas fa-image"></i>
+                    <h3>Image Detection</h3>
+                    <p>Scan images for AI-generated content and digital alterations</p>
+                </div>
+            </div>
+
+            <div class="upload-area" id="upload-section" style="display: none;">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="upload-text">
+                    <p id="upload-prompt">Drag & drop your file here or click to browse</p>
+                    <p id="file-types">Supported formats: <span id="supported-formats"></span></p>
+                </div>
+                <input type="file" id="file-input" class="file-input">
+                <button class="upload-btn" onclick="document.getElementById('file-input').click()">
+                    Choose File
+                </button>
+            </div>
+
+            <div class="result-display" id="result-display" style="display: none;">
+                <div id="result-content">
+                    <!-- Results will be inserted here -->
+                </div>
+            </div>
+        </section>
+    </main>
+    <section id="process">
+        <h2>How It Works</h2>
+        <p>This deepfake detector website was built using modern web technologies to provide a seamless user experience.</p>
+        <h3>Technologies Integrated</h3>
+        <ul>
+            <li><strong>Frontend:</strong> HTML5, CSS3 with responsive design, JavaScript for interactivity</li>
+            <li><strong>Backend:</strong> Python Flask server with TensorFlow AI models</li>
+            <li><strong>PWA Features:</strong> Service Worker for offline support, Web App Manifest for installation</li>
+            <li><strong>AI/ML:</strong> TensorFlow with CNN models for image analysis, extensible for audio/video</li>
+            <li><strong>Mobile Optimization:</strong> Touch-friendly UI, camera integration, responsive layout</li>
+            <li><strong>QR Code:</strong> Dynamic generation for easy sharing and access</li>
+        </ul>
+        <h3>Detection Process</h3>
+        <p>The app uses advanced AI to detect deepfakes with high accuracy:</p>
+        <ol>
+            <li><strong>File Upload:</strong> Users select audio, video, or image files via intuitive interface</li>
+            <li><strong>Preprocessing:</strong> Images are resized and normalized for model input</li>
+            <li><strong>AI Analysis:</strong> TensorFlow CNN model analyzes patterns and anomalies</li>
+            <li><strong>Confidence Scoring:</strong> Returns probability score (60-99%) for deepfake detection</li>
+            <li><strong>Real-time Feedback:</strong> Instant results with loading animations and visual indicators</li>
+            <li><strong>Cross-Platform:</strong> Works on desktop, mobile, and as installed PWA</li>
+        </ol>
+        <h3>PWA Benefits</h3>
+        <ul>
+            <li><strong>Offline Access:</strong> Core functionality cached for offline use</li>
+            <li><strong>App-like Experience:</strong> Install on home screen, standalone mode</li>
+            <li><strong>Fast Loading:</strong> Service Worker caches assets for quick startup</li>
+            <li><strong>Mobile Optimized:</strong> Touch controls, camera access, responsive design</li>
+        </ul>
+        <p><em>Note: For production deployment, host on cloud platforms like Heroku, Vercel, or AWS. The model can be enhanced with specialized deepfake detection networks for higher accuracy.</em></p>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="team-info">
+                <h3>KTBoyz Team</h3>
+                <p><strong>Technical Lead:</strong> MVU</p>
+                <p><strong>Project:</strong> Deepfake Detection System</p>
+                <p><strong>Technologies:</strong> AI/ML, Web Development, PWA</p>
+            </div>
+
+            <div class="footer-links">
+                <p>© 2026 KTBoyz | Advanced AI Solutions</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-globe"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prominent QR Section at Bottom -->
+        <div class="qr-section" id="qr-section">
+            <h4>📱 Scan to Access from Mobile</h4>
+            <img id="qr-code" src="" alt="QR Code for easy access">
+            <p class="qr-text">Make sure your mobile device is on the same Wi-Fi network as this computer</p>
+            <p class="qr-instructions">Scan with your phone's camera or QR scanner app</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
